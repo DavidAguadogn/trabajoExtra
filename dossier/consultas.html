@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Altas, bajas y modificaciones</title>
+<link href="../../gral.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<a href="dossier_trabajoExtra.html"><h3><button>volver</button></a>
+<h3>Altas:</h3>
+
+<h4><br>
+  Si se ejecuta el boton registrar del formulario y se establece la marca(campo de la BD de la tabla bicis) y que no puede estar vacío <br>
+</h4>
+
+<pre>
+if(isset($_POST['registrar']))
+{
+	if(isset($_POST['marca']) && !empty($_POST['marca']))
+	{
+		$marca = $_POST['marca'];
+		$color = $_POST['color'];
+</pre>	
+
+<h4><br>Se ejecuta la consulta para añadir una bici con la marca y color introducidos en el formulario.<br></h4>
+
+<pre>
+ mysql_query("insert into bicis(marca, color) 
+              VALUES('$marca', '$color')", $conexion) or die(mysql_error());
+  
+  echo "Bici añadida con éxito";
+	}
+	else
+	{
+		echo "Error, introduce los datos a añadir";
+	}
+}
+</pre>
+
+<h4><br>Formulario donde se introducen las altas <br></h4>
+
+<pre>
+<img src="img/formulario2.jpg" width="640" height="103" />
+</pre>
+<br />
+<h3>Bajas: </h3>
+
+<h4>La consulta lista todos los usuarios</h4>
+  
+<pre>
+  $consulta = mysql_query(
+  "SELECT * 
+   FROM usuarios", $conexion)
+  or die(mysql_error());
+</pre>  
+  
+
+<h4>Se crea una tabla para ordenar los resultados que se obtengan</h4>
+
+
+
+<h4>La consulta va guardando los resultados obtenidos en cada variable</h4> 
+ 
+<pre> 
+  while($filas = mysql_fetch_array($consulta))
+  {	
+  $IDu=$filas['idusuario'];
+  $user=$filas['usuario'];
+  $pass=$filas['password'];
+</pre>
+
+<h4>A continuacion se crea un formulario para enlazar la función del formulario (en este caso dar de baja un usuario) con los datos de la BD </h4>
+						
+<h4>Una vez se pulsa en el boton eliminar del formulario, se ejecuta la instrucción para que borre de la base de datos un usuario donde se compara la clave primaria de la BD con la clave introducida anteriormente</h4>
+
+<pre>			
+  if(isset($_POST['eliminar']))
+  {
+  <!--sentencia para eliminar de la BD -->
+  mysql_query("DELETE FROM usuarios 
+              WHERE idusuario = '$IDu'", $conexion) or die(mysql_error()); 
+  header('refresh: 1; url=eliminar.php');
+  
+  echo "<p style='color:green;'>ELIMINACION REALIZADA CON EXITO</p>";
+}
+</pre>
+
+<h3>Consultas: </h3>
+
+<h4>En este caso la consulta a realizar sería la siguiente:</h4>
+ 
+<pre>
+  $consulta = mysql_query(
+  "SELECT *
+   FROM bicis", $conexion) or die(mysql_error());
+</pre>  
+
+
+</body>
+</html>

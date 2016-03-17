@@ -1,0 +1,107 @@
+/* CSS Document */
+
+
+		
+a:hover, a:focus{
+	text-decoration:none;
+}
+
+   
+body {
+	background: rgb(246,248,249); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(246,248,249,1) 0%, rgba(229,235,238,1) 31%, rgba(229,235,238,1) 56%, rgba(245,247,249,1) 74%, 	
+	rgba(215,222,227,1) 93%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 31%,rgba(229,235,238,1) 56%,rgba(245,247,249,1) 
+	74%,rgba(215,222,227,1) 93%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 31%,rgba(229,235,238,1) 56%,rgba(245,247,249,1) 
+	74%,rgba(215,222,227,1) 93%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#d7dee3',GradientType=0 ); /* IE6-9 */
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	width: 50%;
+	padding-top: 20px; 
+	}
+	
+  
+
+table{
+	border-collapse: separate;
+ 	width: 50%;
+	alignment-adjust:auto;
+	margin-left:20px;
+	margin-top: 20px;
+}
+
+
+body {
+	margin: 0 auto; /* centrar página para todas las resoluciones*/
+	padding: 0;
+	font-family: Helvetica, Arial, sans-serif;
+	/*color: #666;
+	background: #f2f2f2; */
+	font-size: 1em;
+	line-height: 1.5em;
+	width: auto;
+	padding-top: 0px; /* Relleno superior igual a la altura de la cabecera*/
+}
+
+img {
+	border: 2px;
+	border: solid;
+	max-width: 100%;
+	height: auto;
+}
+
+div{
+	float:inherit;
+	width:auto;	
+	}
+	
+.divtext{
+	float: left;
+	width:10%;
+	margin-left:10px;
+	margin-top. 10px;
+}
+
+.divcab{
+	float: left;
+	width: 25%;
+	color:silver;
+	background-color:#FFF;
+	text-shadow: 2px 2px black;	
+	}
+
+.divimg{
+	border-bottom: solid 2px black;
+	border-bottom-width:medium;
+	pading-bottom: 10px;
+	}
+
+button{ border-bottom-style:solid;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a7c7dc+0,85b2d3+100;Blue+Grey+3D */
+
+background: rgb(167,199,220); /* Old browsers */
+
+background: -moz-linear-gradient(top,  rgba(167,199,220,1) 0%, rgba(133,178,211,1) 100%); /* FF3.6-15 */
+
+background: -webkit-linear-gradient(top,  rgba(167,199,220,1) 0%,rgba(133,178,211,1) 100%); /* Chrome10-25,Safari5.1-6 */
+
+background: linear-gradient(to bottom,  rgba(167,199,220,1) 0%,rgba(133,178,211,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7c7dc', endColorstr='#85b2d3',GradientType=0 ); /* IE6-9 */
+
+
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+	
+	
+	
+	}
+		

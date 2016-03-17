@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Elección de skin</title>
+<link href="../../gral.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<a href="dossier_trabajoExtra.html"><h3><button>volver</button></a>
+<h4>Veo si recibo datos del formulario </h4>
+<pre>
+if(isset($_POST["estilo"])){
+</pre>
+<h4>
+Si es que estoy recibiendo un estilo nuevo, lo tengo que meter en las cookies
+</h4>
+<pre>
+$estilo = $_POST["estilo"];
+</pre>
+<h4>
+Meto el estilo en una cookie
+</h4>
+<pre>
+setcookie("estilo", $estilo, time() + (60 * 60 * 24 * 90));
+</pre>
+<h4>Si no he recibido el estilo que desea el usuario en la pï¿½gina, miro si hay una cookie creada
+</h4>
+<pre>
+   }else{
+    if (isset($_COOKIE["estilo"])){
+</pre>
+<h4>
+  Es porque tengo la cookie
+</h4>
+<pre>
+$estilo = $_COOKIE["estilo"];
+</pre>
+<h4>
+  Si no tengo Cookie, tomo el estilo de los ejemplos
+</h4>
+<pre>
+    }else{
+$estilo = "ejemplos";
+    }
+    }</pre>
+<h4>
+  Aqui se define la ruta de acceso a las diferentes páginas de estilo<br>
+</h4>
+<pre>    $ruta = "skins/";
+</pre>    
+    <h4> Miro si tengo un estilo definido, porque entonces tengo que cargar la correspondiente hoja de estilos</h4>
+<pre>
+if( isset($estilo) ){
+  echo '< link rel="STYLESHEET" type="text/css" href="' . $ruta.$estilo . '.css">
+    ';
+}else{
+    echo '< link rel="STYLESHEET" type="text/css" href="' . $ruta. 'ejemplos.css">';
+
+}
+?></pre>
+<h4>
+  Por último se crea el formulario donde solicitará cada estilo
+</h4>
+<pre>
+<img src="img/formulario.png" width="840" height="239" />
+</pre>
+</body>
+</html>

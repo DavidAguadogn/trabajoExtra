@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2. Sistema de autentificación de usuarios</title>
+<link href="../../gral.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <a href="dossier_trabajoExtra.html"><h3><button>volver</button></a>
+</h3>
+<h3>Lo primero es crear la página index.php la cual nos solicitará el usuario y contraseña para poder acceder la página restringida </h3>
+<pre>
+< form action="control.php" method="post" class="login" align="center">
+	Usuario: < input type="text" name="usuario" id="usuario" />
+	ContraseÃ±a: < input type="password" name="clave" id="clave" />
+< input type="submit" value="Entrar">
+< /form>
+</pre>
+<h3>Creo una página PHP llamada control.php que será la encargada de comprobar si los usuarios están registrados y por lo tanto podrán acceder a la página restringida</h3>
+ 
+ 
+ <h4>Lo primero es crear la conexión con mi base de datos, almacenando en la variable $link mis datos de conexión</h4>
+<pre>$link = mysql_connect("127.0.0.1","root","");
+mysql_select_db("users", $link);
+</pre>
+ <h4><br>
+   El query valida si el usuario ingresado existe en la base de datos. La función <span class="console">htmlentities</span> sirve para evitar inyecciones SQL. <br>
+ </h4>
+<pre>$myusuario = mysql_query(
+              "select usuarios.usuario 
+               from usuarios 
+               where usuarios.usuario =  '".htmlentities($_POST["usuario"])."'",$link);
+$nmyusuario = mysql_num_rows($myusuario);</pre>
+
+   <h4>Si existe el usuario, validamos también la contraseña ingresada y el estado del usuario </h4>
+<pre>
+if($nmyusuario != 0){
+   $sql = "select usuarios.usuario
+           from usuarios
+           where usuarios.usuario = '".htmlentities($_POST["usuario"])."' 
+           and passwd = '".md5(htmlentities($_POST["clave"]))."'";
+   $myclave = mysql_query($sql,$link);
+   //$nmyclave = mysql_num_rows($myclave);</pre>
+   
+   <h4>Si el usuario y clave ingresado son correctos (y el usuario está activo en la BD), creamos la sesión del mismo.</h4>
+<pre>if($nmyusuario != 0){
+   session_start();</pre>
+     <h4>Guardamos dos variables de sesión que nos ayudarán para saber si un usuario está logueado</h4>
+<pre>
+   $_SESSION["autentica"] = "SIP";
+   //$_SESSION["usuarioactual"] = mysql_result($myclave,0,0); //nombre del usuario logueado.</pre>
+     
+     <h4>El logueo será correcto y nos redirecciona a la pagina restringida.</h4>
+<pre>   header ("Location: principal.php");}</pre>
+<h4>Si el usuario o clave no son correctos se cierra la sesión </h4>
+<pre>
+   else{echo"< script>alert('La contrase\u00f1a del usuario no es correcta.'); 
+	 window.location.href=\"index.php\"< /script>"; 
+      }
+   }else{echo"< script>alert('El usuario no existe.');window.location.href=\"index.php\"< /script>";
+   }mysql_close($link);</pre>
+
+</body>
+</html>
